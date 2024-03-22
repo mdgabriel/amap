@@ -12,7 +12,7 @@ TEX_FILES     := $(wildcard *.tex)
 ODT_FILES     := $(patsubst %.tex,%.pandoc.odt,$(TEX_FILES))
 PDF_FILES     := $(patsubst %.tex,%.pdf,$(TEX_FILES))
 
-.PHONY: all read clean realclean
+.PHONY: all read clean realclean install
 
 all: $(PDF_FILES) $(ODT_FILES)
 
@@ -31,3 +31,6 @@ clean:
 
 realclean: clean
 	rm -f $(PDF_FILES) $(ODT_FILES)
+
+install: $(PDF_FILES) $(ODT_FILES)
+	cp $? ${HOME}/Downloads/.
